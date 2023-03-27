@@ -30,13 +30,16 @@
                             <constraint firstItem="D2d-97-0fI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rfh-Q9-cgY"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="JsP-tH-TSR">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="aFr-by-G8l"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="holder" destination="D2d-97-0fI" id="e9n-7q-kMU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-56" y="4"/>
+            <point key="canvasLocation" x="-48" y="4"/>
         </scene>
         <!--Music-->
         <scene sceneID="TZV-j4-vkp">

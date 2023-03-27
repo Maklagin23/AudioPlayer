@@ -7,10 +7,11 @@
 
 import UIKit
 
+
 class TrackListViewController: UITableViewController {
     
     var songs: [Song] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSongs()
@@ -34,13 +35,22 @@ class TrackListViewController: UITableViewController {
         
         songs.append(
             Song(
+                name: "Alex-Productions-Extreme Sport Electronic Beat Push",
+                trackName: "song4"
+            )
+        )
+        
+        songs.append(
+            Song(
                 name: "IMLC - In Case You Missed It",
                 trackName: "song3"
             )
         )
+        
     }
     
 }
+
 
 extension TrackListViewController {
     
@@ -53,9 +63,9 @@ extension TrackListViewController {
         let song = songs[indexPath.row]
         var content = cell.defaultContentConfiguration()
         
-        
         content.text = song.name
-        content.secondaryText = "3:35"
+        content.secondaryText = "0:00"
+        
         cell.accessoryType = .disclosureIndicator
         cell.contentConfiguration = content
         return cell
