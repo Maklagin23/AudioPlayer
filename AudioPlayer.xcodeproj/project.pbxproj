@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7DE05B5E29D036AF00807A30 /* song4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7DE05B5D29D036AF00807A30 /* song4.mp3 */; };
-		7DE05B6229D0816000807A30 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE05B6129D0816000807A30 /* Services.swift */; };
 		7DE25AED29CEEE0A00127CBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25AEC29CEEE0A00127CBE /* AppDelegate.swift */; };
 		7DE25AEF29CEEE0A00127CBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25AEE29CEEE0A00127CBE /* SceneDelegate.swift */; };
 		7DE25AF129CEEE0A00127CBE /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE25AF029CEEE0A00127CBE /* TrackListViewController.swift */; };
@@ -24,7 +23,6 @@
 
 /* Begin PBXFileReference section */
 		7DE05B5D29D036AF00807A30 /* song4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song4.mp3; sourceTree = "<group>"; };
-		7DE05B6129D0816000807A30 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		7DE25AE929CEEE0A00127CBE /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE25AEC29CEEE0A00127CBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DE25AEE29CEEE0A00127CBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,14 +93,6 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		7DE05B6829D1970A00807A30 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				7DE05B6129D0816000807A30 /* Services.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		7DE25AE029CEEE0A00127CBE = {
 			isa = PBXGroup;
 			children = (
@@ -126,7 +116,6 @@
 				7DE05B6329D1956000807A30 /* App */,
 				7DE05B6529D1958500807A30 /* ViewController */,
 				7DE05B6429D1957500807A30 /* Model */,
-				7DE05B6829D1970A00807A30 /* Service */,
 				7DE05B6729D196FF00807A30 /* Storyboard */,
 				7DE05B6629D195A800807A30 /* Resource */,
 			);
@@ -220,7 +209,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE25AF129CEEE0A00127CBE /* TrackListViewController.swift in Sources */,
-				7DE05B6229D0816000807A30 /* Services.swift in Sources */,
 				7DE25B0129CEEE9D00127CBE /* PlayerViewController.swift in Sources */,
 				7DE25AED29CEEE0A00127CBE /* AppDelegate.swift in Sources */,
 				7DE25AEF29CEEE0A00127CBE /* SceneDelegate.swift in Sources */,

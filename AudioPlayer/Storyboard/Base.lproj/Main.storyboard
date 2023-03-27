@@ -30,18 +30,16 @@
                             <constraint firstItem="D2d-97-0fI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rfh-Q9-cgY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="JsP-tH-TSR">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="aFr-by-G8l"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="JsP-tH-TSR"/>
                     <connections>
                         <outlet property="holder" destination="D2d-97-0fI" id="e9n-7q-kMU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-48" y="4"/>
+            <point key="canvasLocation" x="28" y="4"/>
         </scene>
-        <!--Music-->
+        <!--Track List-->
         <scene sceneID="TZV-j4-vkp">
             <objects>
                 <tableViewController id="6TZ-Py-JzJ" customClass="TrackListViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,7 +78,7 @@
                             <outlet property="delegate" destination="6TZ-Py-JzJ" id="aYg-i8-zXU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Music" id="6q4-Vi-Ss4"/>
+                    <navigationItem key="navigationItem" title="Track List" id="6q4-Vi-Ss4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0SZ-Dj-c6r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

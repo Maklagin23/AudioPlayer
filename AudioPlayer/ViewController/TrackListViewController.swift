@@ -9,21 +9,24 @@ import UIKit
 
 class TrackListViewController: UITableViewController {
     
-    var songs: [Song] = []
-    var delegate: PlayerViewController!
+    private var songs: [Song] = []
+    
+    //MARK: - override methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSongs()
     }
     
-    func configureSongs() {
+    //MARK: - private methods
+    
+    private func configureSongs() {
         
         songs.append(
             Song(
                 artistName: "G.O. THOMAS - ",
                 name: "GOOD GUY",
-                albumName: "No Roots",
+                albumName: "cover1",
                 trackName: "song1"
             )
         )
@@ -32,7 +35,7 @@ class TrackListViewController: UITableViewController {
             Song(
                 artistName: "Lately Kind of Yeah  - ",
                 name: "Heart",
-                albumName: "No Roots",
+                albumName: "cover2",
                 trackName: "song2"
             )
         )
@@ -41,7 +44,7 @@ class TrackListViewController: UITableViewController {
             Song(
                 artistName: "Mr Smith - ",
                 name: "JB Hustle",
-                albumName: "No Roots",
+                albumName: "cover3",
                 trackName: "song4"
             )
         )
@@ -50,15 +53,15 @@ class TrackListViewController: UITableViewController {
             Song(
                 artistName: "Lately Kind of Yeah - ",
                 name: "Ghost",
-                albumName: "No Roots",
+                albumName: "cover4",
                 trackName: "song3"
             )
         )
-        
     }
     
 }
 
+//MARK: - tableView
 
 extension TrackListViewController {
     
@@ -67,6 +70,7 @@ extension TrackListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "track", for: indexPath)
         let song = songs[indexPath.row]
         var content = cell.defaultContentConfiguration()
@@ -76,21 +80,21 @@ extension TrackListViewController {
         
         cell.accessoryType = .disclosureIndicator
         cell.contentConfiguration = content
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        //present the player
         let position = indexPath.row
         
-        //songs
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "player") as? PlayerViewController else { return }
+        guard let playerVC = storyboard?.instantiateViewController(withIdentifier: "player") as? PlayerViewController else { return }
+
+        playerVC.songs = songs
+        playerVC.position = position
         
-        vc.songs = songs
-        vc.position = position
-        present(vc, animated: true)
+        present(playerVC, animated: true)
     }
 }
 

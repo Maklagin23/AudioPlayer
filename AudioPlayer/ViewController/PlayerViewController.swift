@@ -16,7 +16,7 @@ class PlayerViewController: UIViewController {
     
     private let albumImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         
         return imageView
     }()
@@ -38,19 +38,19 @@ class PlayerViewController: UIViewController {
     }()
     
     private let timeLabelStart: UILabel = {
-        let timeLabel = UILabel()
-        timeLabel.textAlignment = .left
-        timeLabel.text = "-:--"
+        let label = UILabel()
+        label.textAlignment = .left
+        label.text = "-:--"
         
-        return timeLabel
+        return label
     }()
     
     private let timeLabelEnd: UILabel = {
-        let timeLabel = UILabel()
-        timeLabel.textAlignment = .right
-        timeLabel.text = "-:--"
+        let label = UILabel()
+        label.textAlignment = .right
+        label.text = "-:--"
         
-        return timeLabel
+        return label
     }()
     
     private let slider: UISlider = {
@@ -63,13 +63,12 @@ class PlayerViewController: UIViewController {
         return slider
     }()
     
+    private let closeButton = UIButton()
     private let playPauseButton = UIButton()
     private let nextButton = UIButton()
     private let backButton = UIButton()
-    private let dismissButton = UIButton()
         
     private var player: AVAudioPlayer?
-    private var timer = Timer()
     
     var position = 0
     var songs: [Song] = []
@@ -84,14 +83,7 @@ class PlayerViewController: UIViewController {
         }
     }
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        configure()
-//
-//    }
-
-    
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         if let player = player {
@@ -99,13 +91,11 @@ class PlayerViewController: UIViewController {
         }
     }
     
-
-    
     //MARK: - private methods
     
     private func configure() {
 
-        setupPlayer()
+        setUpPlayer()
         addActions()
         setupFrame()
         setupStyling()
@@ -121,16 +111,15 @@ class PlayerViewController: UIViewController {
             playPauseButton,
             backButton,
             nextButton,
-            dismissButton
+            closeButton
             )
     }
     
-    private func setupPlayer() {
+    private func setUpPlayer() {
         
         let song = songs[position]
 
         let urlString = Bundle.main.path(forResource: song.trackName, ofType: "mp3")
-        //setup user  interface elements
         
         do {
             try AVAudioSession.sharedInstance().setMode(.default)
@@ -149,29 +138,66 @@ class PlayerViewController: UIViewController {
             print("error occurred")
         }
         
-        albumImageView.image = UIImage(systemName: "music.note.list")
+        albumImageView.image = UIImage(named: song.albumName)
         artistNameLabel.text = song.artistName
         songNameLabel.text = song.name
-
+        
     }
     
     private func addActions() {
         
-        playPauseButton.addTarget(self, action: #selector(didTapPlayPauseButton), for: .touchUpInside)
-        backButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
-        nextButton.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
-        dismissButton.addTarget(self, action: #selector(didTapDismissButton), for: .touchUpInside)
+        playPauseButton.addTarget(
+            self,
+            action: #selector(didTapPlayPauseButton),
+            for: .touchUpInside
+        )
         
-        slider.addTarget(self, action: #selector(setUpSlider), for: .touchDragInside)
+        backButton.addTarget(
+            self,
+            action: #selector(didTapBackButton),
+            for: .touchUpInside
+        )
+        
+        nextButton.addTarget(
+            self, action: #selector(didTapNextButton),
+            for: .touchUpInside
+        )
+        
+        closeButton.addTarget(
+            self,
+            action: #selector(didTapCloseButton),
+            for: .touchUpInside
+        )
+        
+        slider.addTarget(
+            self,
+            action: #selector(setupSlider),
+            for: .touchDragInside
+        )
         
     }
     
     private func setupStyling() {
         
-        playPauseButton.setBackgroundImage(UIImage(systemName: "pause.fill"), for: .normal)
-        backButton.setBackgroundImage(UIImage(systemName: "backward.fill"), for: .normal)
-        nextButton.setBackgroundImage(UIImage(systemName: "forward.fill"), for: .normal)
-        dismissButton.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        playPauseButton.setBackgroundImage(
+            UIImage(systemName: "pause.fill"),
+            for: .normal
+        )
+        
+        backButton.setBackgroundImage(
+            UIImage(systemName: "backward.fill"),
+            for: .normal
+        )
+        
+        nextButton.setBackgroundImage(
+            UIImage(systemName: "forward.fill"),
+            for: .normal
+        )
+        
+        closeButton.setBackgroundImage(
+            UIImage(systemName: "xmark.circle.fill"),
+            for: .normal
+        )
         
         playPauseButton.tintColor = .black
         backButton.tintColor = .black
@@ -182,7 +208,13 @@ class PlayerViewController: UIViewController {
         
         guard let player = player else { return }
         
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(update),
+            userInfo: nil,
+            repeats: true
+        )
         
         slider.maximumValue = Float(player.duration)
         timeLabelEnd.text = stringFormatterTimerInterval(interval: player.duration)
@@ -198,6 +230,7 @@ class PlayerViewController: UIViewController {
     }
     
     private func setupSubviews(_ subviews: UIView...) {
+        
         subviews.forEach { subview in
             view.addSubview(subview)
         }
@@ -205,7 +238,8 @@ class PlayerViewController: UIViewController {
     
     //MARK: - objc methods
     
-    @objc func setUpSlider() {
+    @objc func setupSlider() {
+        
         guard let player = player else { return }
         
         if player.isPlaying == true {
@@ -213,6 +247,7 @@ class PlayerViewController: UIViewController {
             player.stop()
             player.currentTime = TimeInterval(slider.value)
             player.play()
+            
         } else {
             
             player.currentTime = TimeInterval(slider.value)
@@ -220,11 +255,11 @@ class PlayerViewController: UIViewController {
     }
     
     @objc func update() {
+        
         guard let player = player else { return }
         
         slider.value = Float(player.currentTime)
-        
-        timeLabelStart.text = stringFormatterTimerInterval(interval: TimeInterval(slider.value)) as String
+        timeLabelStart.text = stringFormatterTimerInterval(interval: TimeInterval(slider.value))
     }
     
     @objc func didTapPlayPauseButton() {
@@ -233,14 +268,14 @@ class PlayerViewController: UIViewController {
         
         if player.isPlaying == true {
             player.pause()
-            
         } else {
             player.play()
-            
         }
         
-        playPauseButton.setBackgroundImage(UIImage(systemName: player.isPlaying == true ? "pause.fill" : "play.fill"), for: .normal)
-
+        playPauseButton.setBackgroundImage(
+            UIImage(systemName: player.isPlaying == true ? "pause.fill" : "play.fill"),
+            for: .normal
+        )
     }
     
     @objc func didTapBackButton() {
@@ -256,7 +291,9 @@ class PlayerViewController: UIViewController {
             }
 
             configure()
+            
         } else {
+            
             position = songs.endIndex - 1
             player.stop()
             
@@ -281,7 +318,9 @@ class PlayerViewController: UIViewController {
             }
             
             configure()
+            
         } else {
+            
             position = songs.startIndex
             player.stop()
             
@@ -293,7 +332,7 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    @objc func didTapDismissButton() {
+    @objc func didTapCloseButton() {
         dismiss(animated: true)
     }
 }
@@ -304,7 +343,7 @@ extension PlayerViewController {
     
     private func setupFrame() {
         
-        dismissButton.frame = CGRect(
+        closeButton.frame = CGRect(
             x: 20,
             y: 20,
             width: 30,
@@ -312,50 +351,48 @@ extension PlayerViewController {
         )
 
         albumImageView.frame = CGRect(
-            x: holder.frame.size.width - 340,
-            y: 10,
-            width: holder.frame.size.width - 100,
-            height: holder.frame.size.width - 100
+            x: 20,
+            y: 60,
+            width: holder.frame.size.width - 40,
+            height: holder.frame.size.width - 80
         )
         
         artistNameLabel.frame = CGRect(
-            x: 10,
-            y: albumImageView.frame.size.height + 20,
-            width: holder.frame.size.width - 20,
-            height: 70
-        )
-        
-        songNameLabel.frame = CGRect(
             x: 10,
             y: albumImageView.frame.size.height + 60,
             width: holder.frame.size.width - 20,
             height: 70
         )
         
-        timeLabelStart.frame = CGRect(
-            x: 20,
-            y: albumImageView.frame.size.height + 120,
+        songNameLabel.frame = CGRect(
+            x: 10,
+            y: albumImageView.frame.size.height + 10 + 90,
             width: holder.frame.size.width - 20,
             height: 70
-            
+        )
+        
+        timeLabelStart.frame = CGRect(
+            x: 20,
+            y: albumImageView.frame.size.height + 10 + 130,
+            width: holder.frame.size.width - 20,
+            height: 70
+
         )
         
         timeLabelEnd.frame = CGRect(
-            x: 20,
-            y: albumImageView.frame.size.height + 120,
+            x: 10,
+            y: albumImageView.frame.size.height + 10 + 130,
             width: holder.frame.size.width - 40,
             height: 70
-            
+
         )
         
         slider.frame = CGRect(
             x: 20,
-            y: albumImageView.frame.size.height + 180,
+            y: albumImageView.frame.size.height + 10 + 180,
             width: holder.frame.size.width - 40,
-            height: 30
+            height: 50
         )
-        
-        // Frame for buttons
         
         let yPosition = slider.frame.origin.y + 50
         let size: CGFloat = 40
