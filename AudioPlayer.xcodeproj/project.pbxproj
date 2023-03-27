@@ -51,6 +51,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7DE05B6329D1956000807A30 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7DE25AEC29CEEE0A00127CBE /* AppDelegate.swift */,
+				7DE25AEE29CEEE0A00127CBE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7DE05B6429D1957500807A30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7DE25B0229CEEF6200127CBE /* Song.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7DE05B6529D1958500807A30 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7DE25AF029CEEE0A00127CBE /* TrackListViewController.swift */,
+				7DE25B0029CEEE9D00127CBE /* PlayerViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7DE05B6629D195A800807A30 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				7DE25AF529CEEE0B00127CBE /* Assets.xcassets */,
+				7DE25AFA29CEEE0B00127CBE /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		7DE05B6729D196FF00807A30 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				7DE25AF229CEEE0A00127CBE /* Main.storyboard */,
+				7DE25AF729CEEE0B00127CBE /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		7DE05B6829D1970A00807A30 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7DE05B6129D0816000807A30 /* Services.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		7DE25AE029CEEE0A00127CBE = {
 			isa = PBXGroup;
 			children = (
@@ -71,16 +123,12 @@
 			isa = PBXGroup;
 			children = (
 				7DE25B1029CEF91700127CBE /* Audio */,
-				7DE25AEC29CEEE0A00127CBE /* AppDelegate.swift */,
-				7DE25AEE29CEEE0A00127CBE /* SceneDelegate.swift */,
-				7DE25AF029CEEE0A00127CBE /* TrackListViewController.swift */,
-				7DE25B0029CEEE9D00127CBE /* PlayerViewController.swift */,
-				7DE25B0229CEEF6200127CBE /* Song.swift */,
-				7DE05B6129D0816000807A30 /* Services.swift */,
-				7DE25AF229CEEE0A00127CBE /* Main.storyboard */,
-				7DE25AF529CEEE0B00127CBE /* Assets.xcassets */,
-				7DE25AF729CEEE0B00127CBE /* LaunchScreen.storyboard */,
-				7DE25AFA29CEEE0B00127CBE /* Info.plist */,
+				7DE05B6329D1956000807A30 /* App */,
+				7DE05B6529D1958500807A30 /* ViewController */,
+				7DE05B6429D1957500807A30 /* Model */,
+				7DE05B6829D1970A00807A30 /* Service */,
+				7DE05B6729D196FF00807A30 /* Storyboard */,
+				7DE05B6629D195A800807A30 /* Resource */,
 			);
 			path = AudioPlayer;
 			sourceTree = "<group>";
@@ -325,7 +373,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RK47S37472;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AudioPlayer/Info.plist;
+				INFOPLIST_FILE = AudioPlayer/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -352,7 +400,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RK47S37472;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AudioPlayer/Info.plist;
+				INFOPLIST_FILE = AudioPlayer/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -7,10 +7,10 @@
 
 import UIKit
 
-
 class TrackListViewController: UITableViewController {
     
     var songs: [Song] = []
+    var delegate: PlayerViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,28 +21,36 @@ class TrackListViewController: UITableViewController {
         
         songs.append(
             Song(
-                name: "Unknow",
+                artistName: "G.O. THOMAS - ",
+                name: "GOOD GUY",
+                albumName: "No Roots",
                 trackName: "song1"
             )
         )
         
         songs.append(
             Song(
-                name: "Lately Kind of Yeah - Heart",
+                artistName: "Lately Kind of Yeah  - ",
+                name: "Heart",
+                albumName: "No Roots",
                 trackName: "song2"
             )
         )
         
         songs.append(
             Song(
-                name: "Alex-Productions-Extreme Sport Electronic Beat Push",
+                artistName: "Mr Smith - ",
+                name: "JB Hustle",
+                albumName: "No Roots",
                 trackName: "song4"
             )
         )
         
         songs.append(
             Song(
-                name: "IMLC - In Case You Missed It",
+                artistName: "Lately Kind of Yeah - ",
+                name: "Ghost",
+                albumName: "No Roots",
                 trackName: "song3"
             )
         )
@@ -63,7 +71,7 @@ extension TrackListViewController {
         let song = songs[indexPath.row]
         var content = cell.defaultContentConfiguration()
         
-        content.text = song.name
+        content.text = song.fullName
         content.secondaryText = "0:00"
         
         cell.accessoryType = .disclosureIndicator
@@ -85,3 +93,5 @@ extension TrackListViewController {
         present(vc, animated: true)
     }
 }
+
+

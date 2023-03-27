@@ -37,14 +37,6 @@ class PlayerViewController: UIViewController {
         return label
     }()
     
-    private let albumNameLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
     private let timeLabelStart: UILabel = {
         let timeLabel = UILabel()
         timeLabel.textAlignment = .left
@@ -61,18 +53,11 @@ class PlayerViewController: UIViewController {
         return timeLabel
     }()
     
-//    private let progressView: UIProgressView = {
-//        let progressView = UIProgressView()
-//        progressView.contentMode = .scaleAspectFill
-//
-//        return progressView
-//    }()
-    
     private let slider: UISlider = {
         let slider = UISlider()
         slider.contentMode = .scaleAspectFill
         
-        slider.maximumValue = 1000 // 1000
+        slider.maximumValue = 1000
         slider.minimumValue = 0
         
         return slider
@@ -89,13 +74,11 @@ class PlayerViewController: UIViewController {
     var position = 0
     var songs: [Song] = []
 
-    
-
     //MARK: - override methods
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
+        
         if holder.subviews.count == 0 {
             configure()
         }
@@ -134,13 +117,11 @@ class PlayerViewController: UIViewController {
             timeLabelEnd,
             slider,
             songNameLabel,
-            albumNameLabel,
             artistNameLabel,
             playPauseButton,
             backButton,
             nextButton,
             dismissButton
-//            progressView,
             )
     }
     
@@ -169,9 +150,8 @@ class PlayerViewController: UIViewController {
         }
         
         albumImageView.image = UIImage(systemName: "music.note.list")
+        artistNameLabel.text = song.artistName
         songNameLabel.text = song.name
-        albumNameLabel.text = "Album name"
-        artistNameLabel.text = "Artist name"
 
     }
     
@@ -208,7 +188,6 @@ class PlayerViewController: UIViewController {
         timeLabelEnd.text = stringFormatterTimerInterval(interval: player.duration)
     }
     
-    
     private func stringFormatterTimerInterval(interval: TimeInterval) -> String {
         
         let timer = Int(interval)
@@ -226,19 +205,6 @@ class PlayerViewController: UIViewController {
     
     //MARK: - objc methods
     
-//    @objc func setUpProgressView() {
-//
-//        guard let player = player else { return }
-//        let totalProgress = Float(player.currentTime) / Float(player.duration)
-//
-////        progressView.setProgress(totalProgress, animated: true)
-//
-//        if player.isPlaying == true {
-////            progressView.setProgress(totalProgress, animated: true)
-//            slider.value = totalProgress
-//        }
-//    }
-    
     @objc func setUpSlider() {
         guard let player = player else { return }
         
@@ -253,7 +219,7 @@ class PlayerViewController: UIViewController {
         }
     }
     
-    @objc func update() { //_ timer: Timer
+    @objc func update() {
         guard let player = player else { return }
         
         slider.value = Float(player.currentTime)
@@ -352,30 +318,16 @@ extension PlayerViewController {
             height: holder.frame.size.width - 100
         )
         
-        //        progressView.frame = CGRect(
-        //            x: 10,
-        //            y: albumImageView.frame.size.height + 10 + 210,
-        //            width: holder.frame.size.width - 20,
-        //            height: holder.frame.size.width - 20
-        //        )
+        artistNameLabel.frame = CGRect(
+            x: 10,
+            y: albumImageView.frame.size.height + 20,
+            width: holder.frame.size.width - 20,
+            height: 70
+        )
         
         songNameLabel.frame = CGRect(
             x: 10,
-            y: albumImageView.frame.size.height + 0,
-            width: holder.frame.size.width - 20,
-            height: 70
-        )
-        
-        albumNameLabel.frame = CGRect(
-            x: 10,
-            y: albumImageView.frame.size.height + 40,
-            width: holder.frame.size.width - 20,
-            height: 70
-        )
-        
-        artistNameLabel.frame = CGRect(
-            x: 10,
-            y: albumImageView.frame.size.height + 80,
+            y: albumImageView.frame.size.height + 60,
             width: holder.frame.size.width - 20,
             height: 70
         )
@@ -385,10 +337,7 @@ extension PlayerViewController {
             y: albumImageView.frame.size.height + 120,
             width: holder.frame.size.width - 20,
             height: 70
-//            x: 10,
-//            y: 30, //slider.frame.size.height - 10,
-//            width: 100, // holder.frame.size.width - 20,
-//            height: 30 // holder.frame.size.width - 20
+            
         )
         
         timeLabelEnd.frame = CGRect(
@@ -396,18 +345,14 @@ extension PlayerViewController {
             y: albumImageView.frame.size.height + 120,
             width: holder.frame.size.width - 40,
             height: 70
-//            x: holder.frame.size.width - 40,
-//            y: slider.frame.size.height - 10,
-//            width: holder.frame.size.width - 20,
-//            height: holder.frame.size.width - 20
+            
         )
         
         slider.frame = CGRect(
-            x: 20, //10,
+            x: 20,
             y: albumImageView.frame.size.height + 180,
-            //albumImageView.frame.size.height + 10 + 20,
-            width: holder.frame.size.width - 40, //albumImageView.frame.size.height + 80,
-            height: 30 // holder.frame.size.width - 20
+            width: holder.frame.size.width - 40,
+            height: 30
         )
         
         // Frame for buttons
@@ -437,3 +382,4 @@ extension PlayerViewController {
         )
     }
 }
+

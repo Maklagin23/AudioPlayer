@@ -9,6 +9,12 @@ import Foundation
 
 
 struct Song {
+    let artistName: String
     let name: String
+    let albumName: String
     let trackName: String
+    
+    var fullName: String {
+        artistName + name
+    }
 }
